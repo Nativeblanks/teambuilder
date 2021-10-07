@@ -2,12 +2,11 @@ const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
-const path = require("path");
 const fs = require("fs");
 
 
 // Prompt questions
-function promptUser() {
+function initialQuestion() {
     return inquirer.prompt([
         {
             type: "input",
@@ -19,7 +18,7 @@ function promptUser() {
             type: "list",
             name: "position",
             message: "Select your position ",
-            choices: ["Manager","Engineer","Employee","Intern"]
+            choices: ["Manager","Engineer","Intern"]
         },
 
 
@@ -27,4 +26,6 @@ function promptUser() {
 
 }
 
-promptUser();
+initialQuestion().then((answers) => {
+    console.log(answers)
+})
