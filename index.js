@@ -10,8 +10,8 @@ function initialQuestion() {
     return inquirer.prompt([
         {
             type: "input",
-            name: "name",
-            message: "Enter your name: ",
+            name: "team name",
+            message: "Enter your team's name: ",
         },
 
         {
@@ -21,11 +21,21 @@ function initialQuestion() {
             choices: ["Manager","Engineer","Intern"]
         },
 
-
     ])
 
 }
 
+
+
 initialQuestion().then((answers) => {
-    console.log(answers)
+    console.log(answers);
+    console.log(answers.position)
+    if (answers.position === "Manager") {
+        console.log("manager logged");
+    } else if 
+        (answers.position === "Engineer") {
+            console.log("Engineer picked");
+        } else {
+        console.log("last resort is intern");
+    }
 })
