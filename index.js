@@ -3,17 +3,20 @@ const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
 const fs = require("fs");
+const Employee = require("./lib/Employee");
+
+const OUTPUT_DIR = path.resolve(__dirname, "output");
+const outputPath = path.join(OUTPUT_DIR, "team.html");
+
+const render = require("./lib/htmlRender");
 
 const employeeArray = [];
+
+
 
 // Prompt questions
 function initialQuestion() {
     return inquirer.prompt([
-        {
-            type: "input",
-            name: "team name",
-            message: "Enter your team's name: ",
-        },
 
         {
             type: "list",
@@ -22,7 +25,7 @@ function initialQuestion() {
             choices: ["Manager","Engineer","Intern"]
         },
 
-    ])
+    ]);
 
 }
 
@@ -158,8 +161,33 @@ function fullQuestions() {
         managerQuestions().then((answers)=> {
             if (answers.another === true) {
                 addMore(answers);
+                const savedManager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
+                // employeeArray.push(new Employee(answers.name))
+                console.log("save during add another employee test");
+                employeeArray.push(savedManager)
+                console.log(employeeArray)
+
+                fs.writeFile(outputPath, render(employeeArray), function(err) {
+
+                    if (err) {
+                      return console.log(err);
+                    }
+                  
+                    console.log("Success! your page has been created!");
+                  
+                  });
+                return
+
             } else {
                 console.log("function to render will go here")
+                
+                const savedManager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
+                // employeeArray.push(new Employee(answers.name))
+                console.log("save during add another employee test");
+                 employeeArray.push(savedManager)
+                
+            
+                console.log(employeeArray)
             }
         })
         
@@ -170,9 +198,16 @@ function fullQuestions() {
                 console.log(answers)
                 if (answers.another === true) {
                     console.log ("add another one")
+                    const savedEngineer = new Engineer(answers.name, answers.id, answers.email, answers.officeNumber);
+                    employeeArray.push(savedEngineer);
+                    console.log(employeeArray);
     
                 } else {
                     console.log("function to render will go here")
+                    const savedEngineer = new Engineer(answers.name, answers.id, answers.email, answers.officeNumber);
+                    // employeeArray.push(new Employee(answers.name))
+                    console.log("save employee test");
+                    employeeArray.push(savedEngineer);
                 }
             })
         } else {
@@ -188,9 +223,5 @@ function fullQuestions() {
     })
 }})} 
 
-fullQuestions();
+fullQuestions()
 
-
-const saveEmployee = (answers) => {
-    employeeArray.push
-}
