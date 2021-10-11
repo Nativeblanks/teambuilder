@@ -3,9 +3,11 @@
 You can enter your name and your team members using this application
 
 
+![Screenshot (35)](https://user-images.githubusercontent.com/86581872/136721235-657ba184-d6d3-4495-8ef0-62b0775f5c15.png)
 
 
-https://watch.screencastify.com/v/zODx1epW845pDYF4RClT
+
+
 
 
 
@@ -25,8 +27,12 @@ This is an application that will allow you to enter your team's information. Thi
 run node index.js
 # Usage
 run node index.js
+
+link below shows how the application is used
+https://watch.screencastify.com/v/zODx1epW845pDYF4RClT
 # Contributing
-NA
+Zach Blanks
+
 # Test
 no tests made for this application
 # Questions
